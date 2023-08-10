@@ -11,7 +11,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->routes = DB::table('route')->orderBy('nom')->get();
+        $this->routes = DB::table('anosizato_planet_osm_line_lines')->orderBy('name')->get();
     }
     public function render()
     {

@@ -5,8 +5,8 @@
             <div class="inset-1 overflow-y-auto rounded-md bg-white bg-opacity-75 p-2 pt-1">
                 <div class="flex items-center justify-between pr-1">
                     <div class="flex justify-start space-x-3">
-                        <h3 x-on:click.prevend="activeTab = 'legend'" class="cursor-pointer text-slate-700" x-bind:class="activeTab === 'legend' && 'font-bold'">Legend</h3>
-                        <h3 x-on:click.prevend="activeTab = 'batiments'" class="cursor-pointer text-slate-700" x-bind:class="activeTab === 'batiments' && 'font-bold'">Batiments</h3>
+                        <h3 x-on:click.prevend="activeTab = 'legend'" class="cursor-pointer text-slate-700" x-bind:class="activeTab === 'legend' && 'font-bold'">Legends</h3>
+                        <h3 x-on:click.prevend="activeTab = 'batiments'" class="cursor-pointer text-slate-700" x-bind:class="activeTab === 'batiments' && 'font-bold'">Building</h3>
                         <h3 x-on:click.prevend="activeTab = 'routes'" class="cursor-pointer text-slate-700" x-bind:class="activeTab === 'routes' && 'font-bold'">Routes</h3>
                     </div>
                     <button x-on:click.prevent="legendOpened = false" class="mb-1 text-2xl font-black text-slate-400 transition hover:text-[#3369A1] focus:text-[#3369A1] focus:outline-none">&times;</button>
@@ -33,7 +33,7 @@
                 <div x-show="activeTab === 'batiments'" x-transition:enter="transition-opacity duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="mt-2 p-1 rounded-md border border-slate-300 bg-white h-[600px] overflow-y-auto">
                     <livewire:batiments.index />
                 </div>
-                <div x-show="activeTab === 'routes'" x-transition:enter="transition-opacity duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="mt-2 p-1 rounded-md border border-slate-300 bg-white">
+                <div x-show="activeTab === 'routes'" x-transition:enter="transition-opacity duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="mt-2 p-1 rounded-md border border-slate-300 bg-white h-[600px] overflow-y-auto">
                     <livewire:routes.index />
                 </div>
             </div>
@@ -44,14 +44,14 @@
                     <a href="#" title="Close" x-on:click.prevent="closePopup" class="-mt-1 font-black text-slate-400 transition hover:text-slate-600 focus:text-slate-600 focus:outline-none">&times;</a>
                 </div>
                 <div>
-                    <h1 class="text-3xl font-semibold">Batiments</h1>
+                    <h1 class="text-3xl font-semibold">Building</h1>
                 </div>
                 <div x-ref="popupContent" class="mt-2 overflow-y-auto"></div>
             </div>
         </div>
     </div>
     {{-- map --}}
-    <div x-ref="map" class="h-[75vh] col-span-4 border border-slate-300 shadow-lg"></div>
+    <div x-ref="map" class="h-[75vh] col-span-4 border border-slate-300 rounded-lg shadow-lg"></div>
 
 </div>
 

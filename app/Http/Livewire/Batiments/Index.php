@@ -11,7 +11,8 @@ class Index extends Component
 
     public function mount()
     {
-        $this->batiments = DB::table('bati')->selectRaw('bati.nom_bati as nom_bati , bati.type_bati as type_bati , st_asgeojson(bati.*) as geojson')->orderBy('bati.nom_bati')->get();
+        $this->batiments = DB::table('anosizato_planet_osm_point_points')->selectRaw('anosizato_planet_osm_point_points.name as name , 
+        anosizato_planet_osm_point_points.operator as operator , st_asgeojson(anosizato_planet_osm_point_points.*) as geojson')->orderBy('anosizato_planet_osm_point_points.name')->get();
     }
 
     public function render()

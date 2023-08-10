@@ -12,43 +12,43 @@ document.addEventListener("alpine:init", () => {
       map: {},
       activeTab: "legend",
       initComponent() {
-        let batiLayer = new TileLayer({
+        let terreLayer = new TileLayer({
           source: new TileWMS({
             url: "http://localhost:8081/geoserver/wms",
             params: {
-              LAYERS: "laravelgis:bati",
+              LAYERS: "laravelgis:anosizato_planet_osm_polygon_polygons",
               TILED: true,
               STYLES: "",
             },
             serverType: "geoserver",
           }),
-          label: "Batiments",
+          label: "Terre",
+        });
+
+        let batiLayer = new TileLayer({
+          source: new TileWMS({
+            url: "http://localhost:8081/geoserver/wms",
+            params: {
+              LAYERS: "laravelgis:anosizato_planet_osm_point_points",
+              TILED: true,
+              STYLES: "",
+            },
+            serverType: "geoserver",
+          }),
+          label: "Bâtiments",
         });
 
         let routeLayer = new TileLayer({
           source: new TileWMS({
             url: "http://localhost:8081/geoserver/wms",
             params: {
-              LAYERS: "laravelgis:route",
+              LAYERS: "laravelgis:anosizato_planet_osm_line_lines",
               TILED: true,
               STYLES: "",
             },
             serverType: "geoserver",
           }),
           label: "Routes",
-        });
-
-        let foretLayer = new TileLayer({
-          source: new TileWMS({
-            url: "http://localhost:8081/geoserver/wms",
-            params: {
-              LAYERS: "laravelgis:foret",
-              TILED: true,
-              STYLES: "",
-            },
-            serverType: "geoserver",
-          }),
-          label: "Foret",
         });
 
         this.map = new Map({
@@ -58,14 +58,14 @@ document.addEventListener("alpine:init", () => {
               source: new OSM(),
               label: "OpenStreetMap",
             }),
+            terreLayer,
             batiLayer,
-            foretLayer,
             routeLayer,
           ],
           view: new View({
             projection: "EPSG:4326",
-            center: [47.8836532, -18.9282945],
-            zoom: 17,
+            center: [47.49820, -18.93820],
+            zoom: 15,
           }),
           overlays: [
             new Overlay({
@@ -109,10 +109,10 @@ document.addEventListener("alpine:init", () => {
                   let content =
                     "<div class='space-y-5'>" +
                     '<h4 class="text-gray-500 font-bold">Nom du batiment : ' +
-                    jsonFeature.nom_bati +
+                    jsonFeature.name +
                     "</h4>" +
                     '<h4 class="text-gray-500 font-bold">Type de batiment : ' +
-                    jsonFeature.type_bati +
+                    jsonFeature.natural +
                     "</h4>" +
                     "</div>";
 
@@ -143,17 +143,17 @@ document.addEventListener("alpine:init", () => {
         let content =
           "<div class='space-y-5'>" +
           '<h4 class="text-gray-500 font-bold">Nom du batiment : ' +
-          jsonFeature.properties.nom_bati +
+          jsonFeature.properties.name +
           "</h4>" +
           '<h4 class="text-gray-500 font-bold">Type de batiment : ' +
-          jsonFeature.properties.type_bati +
+          jsonFeature.properties.operator +
           "</h4>" +
           "</div>";
 
         this.$refs.popupContent.innerHTML = content;
 
         setTimeout(() => {
-          overlay.setPosition(jsonFeature.geometry.coordinates[0][0][0]);
+          overlay.setPosition(jsonFeature.geometry.coordinates[0][0]);
         }, 500);
 
         return;
